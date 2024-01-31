@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// schema.prisma
+
+model User {
+  id            String        @id @default(uuid())
+  username      String
+  email         String        @unique        
+  password      String        
+  role          Role?          @relation(fields: [roleId], references: [id])
+  roleId        String?        
+  permissions   Permission[]  
+}
+
+model Role {
+  id            String        @id @default(uuid())
+  name          String        
+  description   String?       
+  users         User[]        
+  permissions   Permission[]  
+}
+
+model Permission {
+  id            String        @id @default(uuid())
+  name          String        
+  description   String?       
+  users         User[]        
+  roles         Role[]        
+}
+
+model Post {
+  id            String        @id @default(uuid()) 
+  title         String        
+  content       String        
+  mediaUrl      String?       
+  tags          Tag[]         
+  createdAt     DateTime      @default(now())
+  publishedAt   DateTime?
+}
+
+model ScheduledPost {
+  id            String        @id @default(uuid()) 
+  title         String         
+  content       String      
+  mediaUrl      String?   
+  tags          Tag[]         
+  scheduledAt   DateTime      
+}
+
+model Tag {
+  id            String        @id @default(uuid())
+  name          String        
+  posts         Post[]        
+  scheduledPosts ScheduledPost[] 
+}
