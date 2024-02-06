@@ -6,6 +6,7 @@ import { DeleteUserController } from "../../controllers/user/DeleteUserControlle
 import { UpdateUserController } from "../../controllers/user/UpdateUserController";
 import { AuthUserController } from "../../controllers/user/AuthUserController";
 import { isAuthenticated } from "../../middlewares/isAuthenticated";
+import { ForgotPasswordController } from "../../controllers/user/ForgotPasswordController";
 
 export const usersRoutes: Router = Router();
 
@@ -15,4 +16,6 @@ usersRoutes.get('/:id', isAuthenticated, new ListUserByIdController().handle)
 usersRoutes.delete('/:id', isAuthenticated, new DeleteUserController().handle)
 usersRoutes.put('/:id', isAuthenticated,new UpdateUserController().handle)
 
+
+usersRoutes.post('/password', isAuthenticated, new ForgotPasswordController().handle)
 usersRoutes.post('/session', new AuthUserController().handle)
