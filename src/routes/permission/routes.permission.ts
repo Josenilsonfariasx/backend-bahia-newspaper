@@ -6,6 +6,7 @@ import { InsertPermissionForRoleController } from "../../controllers/permissions
 import { RemovePermissionUserController } from "../../controllers/permissions/RemovePermissionUserController";
 import { RemovePermissionRoleController } from "../../controllers/permissions/RemovePermissionRoleController";
 import { ListPermissionController } from "../../controllers/permissions/ListPermissionController";
+import { UpdatePermissionController } from "../../controllers/permissions/UpdatePermissionController";
 
 export const permissionRoutes: Router = Router()
 // get
@@ -21,3 +22,4 @@ permissionRoutes.delete('/user', isAuthenticated, new RemovePermissionUserContro
 permissionRoutes.delete('/role', isAuthenticated, new RemovePermissionRoleController().handle)
 
 // put
+permissionRoutes.put('/update', isAuthenticated, new UpdatePermissionController().handle)
