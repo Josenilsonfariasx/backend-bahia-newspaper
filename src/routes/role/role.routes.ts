@@ -2,6 +2,7 @@ import { Router } from "express";
 import { CreateRoleController } from "../../controllers/role/CreateRoleController";
 import { isAuthenticated } from "../../middlewares/isAuthenticated";
 import { ListRoleController } from "../../controllers/role/ListRoleController";
+import { DeleteRoleController } from "../../controllers/role/DeleteRoleController";
 
 export const roleRoutes: Router = Router()
 
@@ -12,6 +13,7 @@ roleRoutes.post('/', isAuthenticated, new CreateRoleController().handle)
 roleRoutes.get('/', isAuthenticated, new ListRoleController().handle)
 
 // delete
+roleRoutes.delete('/:id', isAuthenticated, new DeleteRoleController().handle)
 
 
 // put
