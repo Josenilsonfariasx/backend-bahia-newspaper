@@ -3,6 +3,7 @@ import { CreateRoleController } from "../../controllers/role/CreateRoleControlle
 import { isAuthenticated } from "../../middlewares/isAuthenticated";
 import { ListRoleController } from "../../controllers/role/ListRoleController";
 import { DeleteRoleController } from "../../controllers/role/DeleteRoleController";
+import { UpdateRoleController } from "../../controllers/role/UpdateRoleController";
 
 export const roleRoutes: Router = Router()
 
@@ -17,3 +18,4 @@ roleRoutes.delete('/:id', isAuthenticated, new DeleteRoleController().handle)
 
 
 // put
+roleRoutes.put('/', isAuthenticated, new UpdateRoleController().handle)
