@@ -21,7 +21,7 @@ class InsertPermissionForUserService {
       if(!user){
         throw new Error('User Not Found')
       }
-      const UserWithPermission = prismaClient.user.update({
+      const UserWithPermission = await prismaClient.user.update({
         where:{
           id: userId
         },
@@ -29,6 +29,22 @@ class InsertPermissionForUserService {
           permissions:{
             connect:{
               id: permissionId
+            }
+          }
+        }, select: {
+          id:true,
+          username:true,
+          email:true,
+          permissions:{
+            select:{
+              id:true, 
+              name:true
+            }
+          },
+          role:{
+            select:{
+              id:true, 
+              name:true
             }
           }
         }

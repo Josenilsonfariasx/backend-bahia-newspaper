@@ -5,7 +5,7 @@ class InsertPermissionForRoleController {
   async handle(req: Request, res: Response) {
     const {permissionId, roleId} = req.body
     const insertPermissionForRoleService = new InsertPermissionForRoleService()
-    const permissionInsert = insertPermissionForRoleService.execute({
+    const permissionInsert = await insertPermissionForRoleService.execute({
       permissionId, 
       roleId
     })

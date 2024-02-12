@@ -4,9 +4,8 @@ import { InsertPermissionForUserService } from "../../services/permissions/Inser
 class InsertPermissionForUserController {
   async handle(req: Request, res: Response) {
     const {permissionId} = req.body
-    console.log(req.user_id)
     const insertPermissionForUserService = new InsertPermissionForUserService()
-    const userUpdate = insertPermissionForUserService.execute({
+    const userUpdate = await insertPermissionForUserService.execute({
       permissionId:permissionId,
       userId: req.user_id
     })

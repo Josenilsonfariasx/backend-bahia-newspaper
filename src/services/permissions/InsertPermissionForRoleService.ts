@@ -44,6 +44,16 @@ class InsertPermissionForRoleService {
           permissions: {
             connect: { id: permissionId }
           }
+        }, select:{
+          id:true,
+          name:true,
+          description:true,
+          permissions:{
+            select:{
+              id: true,
+              name:true
+            }
+          }
         }
       });
 
