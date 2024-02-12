@@ -5,6 +5,7 @@ import { ListRoleController } from "../../controllers/role/ListRoleController";
 import { DeleteRoleController } from "../../controllers/role/DeleteRoleController";
 import { UpdateRoleController } from "../../controllers/role/UpdateRoleController";
 import { InsertRoleForUserController } from "../../controllers/role/InsertRoleForUserController";
+import { ListRoleByIdController } from "../../controllers/role/ListRoleByIdController";
 
 export const roleRoutes: Router = Router()
 
@@ -14,6 +15,7 @@ roleRoutes.post('/user', isAuthenticated, new InsertRoleForUserController().hand
 
 // get
 roleRoutes.get('/', isAuthenticated, new ListRoleController().handle)
+roleRoutes.get('/:id', isAuthenticated, new ListRoleByIdController().handle)
 
 // delete
 roleRoutes.delete('/:id', isAuthenticated, new DeleteRoleController().handle)
