@@ -4,11 +4,13 @@ import { isAuthenticated } from "../../middlewares/isAuthenticated";
 import { ListRoleController } from "../../controllers/role/ListRoleController";
 import { DeleteRoleController } from "../../controllers/role/DeleteRoleController";
 import { UpdateRoleController } from "../../controllers/role/UpdateRoleController";
+import { InsertRoleForUserController } from "../../controllers/role/InsertRoleForUserController";
 
 export const roleRoutes: Router = Router()
 
 // post
 roleRoutes.post('/', isAuthenticated, new CreateRoleController().handle)
+roleRoutes.post('/user', isAuthenticated, new InsertRoleForUserController().handle)
 
 // get
 roleRoutes.get('/', isAuthenticated, new ListRoleController().handle)
