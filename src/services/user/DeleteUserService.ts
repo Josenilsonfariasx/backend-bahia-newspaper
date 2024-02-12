@@ -18,7 +18,7 @@ class DeleteUserService {
           username: true,
           email: true, 
           permissions: true,
-          roleId:true
+          role:true
         }  
       })
       return user

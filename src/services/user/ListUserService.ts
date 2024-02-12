@@ -8,7 +8,7 @@ class ListUserService {
           id: true,
           username:true,  
           email: true,
-          roleId: true,
+          role: true,
           permissions: true,
           _count: true,
         }

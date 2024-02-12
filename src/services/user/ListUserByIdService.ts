@@ -18,7 +18,7 @@ class ListUserByIdService {
           username: true,
           email: true, 
           permissions: true,
-          roleId:true
+          role:true
         }  
       })
       return user
