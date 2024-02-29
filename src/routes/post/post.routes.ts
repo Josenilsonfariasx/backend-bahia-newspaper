@@ -4,6 +4,7 @@ import { CreatePostController } from "../../controllers/post/CreatePostControlle
 import multer from "multer";
 import uploadConfig from '../../configs/multerConfig';
 import { ListAllPostController } from "../../controllers/post/ListAllPostController";
+import { UpdatePostController } from "../../controllers/post/UpdatePostController";
 export const postRoutes = Router()
 
 // post
@@ -12,3 +13,6 @@ postRoutes.post('/',  upload.array('files', 10), isAuthenticated, new CreatePost
 
 // get
 postRoutes.get('/', new ListAllPostController().handle)
+
+// put
+postRoutes.put('/:id', new UpdatePostController().handle)
