@@ -6,7 +6,11 @@ import uploadConfig from '../../configs/multerConfig';
 import { ListAllPostController } from "../../controllers/post/ListAllPostController";
 import { UpdatePostController } from "../../controllers/post/UpdatePostController";
 import { DeletePostController } from "../../controllers/post/DeletePostController";
+import { GetPostByIdController } from "../../controllers/post/GetPostByIdController";
+
+
 export const postRoutes = Router()
+
 
 // post
 const upload = multer(uploadConfig);
@@ -14,6 +18,7 @@ postRoutes.post('/',  upload.array('files', 10), isAuthenticated, new CreatePost
 
 // get
 postRoutes.get('/', new ListAllPostController().handle)
+postRoutes.get('/:id', new GetPostByIdController().handle)
 
 // put
 postRoutes.put('/:id', new UpdatePostController().handle)
