@@ -7,6 +7,7 @@ import { ListAllPostController } from "../../controllers/post/ListAllPostControl
 import { UpdatePostController } from "../../controllers/post/UpdatePostController";
 import { DeletePostController } from "../../controllers/post/DeletePostController";
 import { GetPostByIdController } from "../../controllers/post/GetPostByIdController";
+import { UpdateStatusPostController } from "../../controllers/post/UpdateStatusPostController";
 
 
 export const postRoutes = Router()
@@ -22,6 +23,7 @@ postRoutes.get('/:id', new GetPostByIdController().handle)
 
 // put
 postRoutes.put('/:id', new UpdatePostController().handle)
+postRoutes.put('/status/:id', new UpdateStatusPostController().handle)
 
 // delete
 postRoutes.delete('/:id', new DeletePostController().handle)
