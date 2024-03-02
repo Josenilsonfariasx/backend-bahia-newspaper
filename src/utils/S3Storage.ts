@@ -43,13 +43,18 @@ class S3Storage {
     return fileUrl;
   }
 
-  async deleteFile(filename: string): Promise<void> {
-    await this.client
-      .deleteObject({
-        Bucket: 'aula-youtube1',
-        Key: filename,
-      })
-      .promise();
+  async deleteFile(filename: string) {
+    const params = {
+      Bucket: 'aula-youtube1', 
+      Key: filename
+    };
+
+    return new Promise((resolve, reject) => {
+      this.client.deleteObject(params, (err, data) => {
+        if (err) reject(err);
+        else resolve(data);
+      });
+    });
   }
 }
 
