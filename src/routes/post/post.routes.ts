@@ -13,6 +13,7 @@ import { CreatePostScheduleController } from "../../controllers/post/CreatePostS
 import { CancelAppointmentPostController } from "../../controllers/post/CancelAppointmentPostController";
 import { InsertCategoryInPostController } from "../../controllers/post/InsertCategoryInPostController";
 import { RemoveCategoryFromPostController } from "../../controllers/post/RemoveCategoryFromPostController";
+import { InsertTagInPostController } from "../../controllers/post/InsertTagInPostController";
 
 
 export const postRoutes = Router()
@@ -23,6 +24,7 @@ const upload = multer(uploadConfig);
 postRoutes.post('/', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostController().handle)
 postRoutes.post('/schedule', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostScheduleController().handle)
 postRoutes.post('/category/:id', isAuthenticated, new InsertCategoryInPostController().handle)
+postRoutes.post('/tag/:id', isAuthenticated, new InsertTagInPostController().handle)
 
 // get
 postRoutes.get('/', isAuthenticated, new ListAllPostController().handle)
