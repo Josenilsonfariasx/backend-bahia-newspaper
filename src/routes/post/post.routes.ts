@@ -11,6 +11,7 @@ import { UpdateStatusPostController } from "../../controllers/post/UpdateStatusP
 import { DeleteImageFromPostController } from "../../controllers/post/DeleteImageFromPostController";
 import { CreatePostScheduleController } from "../../controllers/post/CreatePostScheduleController";
 import { CancelAppointmentPostController } from "../../controllers/post/CancelAppointmentPostController";
+import { InsertCategoryInPostController } from "../../controllers/post/InsertCategoryInPostController";
 
 
 export const postRoutes = Router()
@@ -20,6 +21,7 @@ export const postRoutes = Router()
 const upload = multer(uploadConfig);
 postRoutes.post('/', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostController().handle)
 postRoutes.post('/schedule', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostScheduleController().handle)
+postRoutes.post('/category/:id', isAuthenticated, new InsertCategoryInPostController().handle)
 
 // get
 postRoutes.get('/', isAuthenticated, new ListAllPostController().handle)
