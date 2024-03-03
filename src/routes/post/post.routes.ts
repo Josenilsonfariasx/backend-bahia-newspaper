@@ -9,6 +9,7 @@ import { DeletePostController } from "../../controllers/post/DeletePostControlle
 import { GetPostByIdController } from "../../controllers/post/GetPostByIdController";
 import { UpdateStatusPostController } from "../../controllers/post/UpdateStatusPostController";
 import { DeleteImageFromPostController } from "../../controllers/post/DeleteImageFromPostController";
+import { CreatePostScheduleController } from "../../controllers/post/CreatePostScheduleController";
 
 
 export const postRoutes = Router()
@@ -17,6 +18,7 @@ export const postRoutes = Router()
 // post
 const upload = multer(uploadConfig);
 postRoutes.post('/', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostController().handle)
+postRoutes.post('/schedule', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostScheduleController().handle)
 
 // get
 postRoutes.get('/', isAuthenticated, new ListAllPostController().handle)
