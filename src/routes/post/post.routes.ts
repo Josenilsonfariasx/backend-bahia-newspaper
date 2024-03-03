@@ -12,6 +12,7 @@ import { DeleteImageFromPostController } from "../../controllers/post/DeleteImag
 import { CreatePostScheduleController } from "../../controllers/post/CreatePostScheduleController";
 import { CancelAppointmentPostController } from "../../controllers/post/CancelAppointmentPostController";
 import { InsertCategoryInPostController } from "../../controllers/post/InsertCategoryInPostController";
+import { RemoveCategoryFromPostController } from "../../controllers/post/RemoveCategoryFromPostController";
 
 
 export const postRoutes = Router()
@@ -35,3 +36,4 @@ postRoutes.put('/schedule/cancel/:id', isAuthenticated, new CancelAppointmentPos
 // delete
 postRoutes.delete('/:id', isAuthenticated, new DeletePostController().handle)
 postRoutes.delete('/image/delete/:id', isAuthenticated, new DeleteImageFromPostController().handle)
+postRoutes.delete('/category/delete/:id', isAuthenticated, new RemoveCategoryFromPostController().handle)
