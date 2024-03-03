@@ -44,7 +44,7 @@ class CreatePostScheduleService {
       }
     })
 
-    await jobQueue.add(post, { delay: delay, attempts: 3 })
+    await jobQueue.add(post.id, post, { delay: delay, attempts: 5 })
       .catch(err => { throw new Error('Error scheduling post: ' + err.message) });
 
     return post
