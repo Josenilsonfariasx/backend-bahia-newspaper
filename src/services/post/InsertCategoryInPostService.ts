@@ -18,7 +18,7 @@ class InsertCategoryInPostService {
 
       const categoryAlreadyInserted = post.categories.find(category => category.id === category_id)
       if(categoryAlreadyInserted) throw new Error('Category already inserted in this post.')
-      const postUpdated = await prismaClient.post.update({ where: { id: post_id }, include:{categories:true}, data: { categories: { connect: { id: category_id } } } })
+      const postUpdated = await prismaClient.post.update({ where: { id: post_id }, include:{categories:true, tags:true}, data: { categories: { connect: { id: category_id } } } })
       return postUpdated
     } catch (error) {
       throw new Error('Failed to insert category in Post: '+error.message)

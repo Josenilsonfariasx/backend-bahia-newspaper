@@ -7,7 +7,7 @@ class GetPostByIdService {
   async execute({ id }: PostRequest) {
     try {
       if(!id) throw new Error('Id from Post is required')
-      const post = await prismaClient.post.findFirst({ where: { id } })
+      const post = await prismaClient.post.findFirst({ where: { id }, include: {tags: true, categories:true}})
       if(!post) throw new Error('Post not found')
       return post
     } catch (error) {

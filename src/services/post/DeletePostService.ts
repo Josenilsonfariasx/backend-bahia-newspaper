@@ -11,7 +11,8 @@ class DeletePostService {
       const post = await prismaClient.post.findFirst({ where: { id } })
       if(!post) throw new Error('Post not found')
       const deletedPost = await prismaClient.post.delete({
-        where: { id }
+        where: { id },
+        include: {tags: true, categories:true}
       })
       return deletedPost
     } catch (error) {

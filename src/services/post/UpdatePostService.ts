@@ -17,7 +17,7 @@ class UpdatePostService {
         data: {
           title: title !== '' || title!== null ? title : post.title,
           content: content !== '' || content!== null ? content : post.content,
-        }
+        }, include: {tags: true, categories:true}
       })
       return updatedPost
     } catch (error) {

@@ -10,7 +10,7 @@ class UpdateStatusPostService {
       if(!id) throw new Error('Id from Post is required')
       const post = await prismaClient.post.findFirst({ where: { id } })
       if(!post) throw new Error('Post not found')
-      const updatedPost = await prismaClient.post.update({ where: { id }, data: { published: published } })
+      const updatedPost = await prismaClient.post.update({ where: { id }, data: { published: published }, include: {tags: true, categories:true}})
       return updatedPost
     } catch (error) {
       throw new Error('Failed to update status from post published: ' +error.message)

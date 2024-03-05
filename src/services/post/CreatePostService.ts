@@ -42,6 +42,9 @@ class CreatePostService {
           videoUrls: uploadedVideos.map(video => video.url),
           published: true,
           publishedAt: new Date()
+        }, include: {
+          categories: true,
+          tags: true
         }
       })
       return post;
