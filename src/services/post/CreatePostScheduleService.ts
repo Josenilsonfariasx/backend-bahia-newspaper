@@ -1,3 +1,4 @@
+
 import UploadImagesService from '../aws/uploadImagesService';
 import prismaClient from '../../prisma';
 import jobQueue from '../../utils/jobQueue';
@@ -44,7 +45,7 @@ class CreatePostScheduleService {
       }
     })
 
-    await jobQueue.add(post.id, post, { delay: delay, attempts: 5 })
+    await jobQueue.add(post, { delay: delay, attempts: 3 })
       .catch(err => { throw new Error('Error scheduling post: ' + err.message) });
 
     return post
