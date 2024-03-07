@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgresql" 
   url      = env("DATABASE_URL")
 }
 
@@ -39,24 +39,25 @@ model Post {
   id            String        @id @default(uuid()) 
   title         String        
   content       String        
-  mediaUrl      String?       
-  tags          Tag[]         
+  photoUrls     String[]     
+  videoUrls     String[]     
+  tags          Tag[]        
+  categories    Category[] 
   createdAt     DateTime      @default(now())
   publishedAt   DateTime?
-}
-
-model ScheduledPost {
-  id            String        @id @default(uuid()) 
-  title         String         
-  content       String      
-  mediaUrl      String?   
-  tags          Tag[]         
-  scheduledAt   DateTime      
+  published     Boolean       @default(false)
+  scheduledAt   DateTime?
 }
 
 model Tag {
   id            String        @id @default(uuid())
   name          String        
   posts         Post[]        
-  scheduledPosts ScheduledPost[] 
+}
+
+model Category {
+  id            String        @id @default(uuid())
+  name          String
+  description   String
+  posts         Post[]
 }
