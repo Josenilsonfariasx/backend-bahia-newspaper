@@ -996,3 +996,929 @@
  *       "error": "Failed to update role: Internal Prisma error"
  *     }
  */
+/**
+ * @api {post} /tag/ Criar Tag
+ * @apiName CriarTag
+ * @apiGroup Tags
+ *
+ * @apiParam {String} name Nome da tag a ser criada.
+ *
+ * @apiSuccess {String} id ID único da tag.
+ * @apiSuccess {String} name Nome da tag.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "name": "Tag1"
+ *     }
+ *
+ * @apiError BadRequest Name is required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Name is required"
+ *     }
+ *
+ * @apiError BadRequest Tag already exists.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Tag already exists"
+ *     }
+ *
+ * @apiError InternalServerError Failed to create tag.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to create tag: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {delete} /tag/:id Deletar Tag
+ * @apiName DeletarTag
+ * @apiGroup Tags
+ *
+ * @apiParam {String} id ID da tag a ser deletada.
+ *
+ * @apiSuccess {String} id ID único da tag deletada.
+ * @apiSuccess {String} name Nome da tag deletada.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "name": "Tag1"
+ *     }
+ *
+ * @apiError BadRequest Invalid id.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Invalid id"
+ *     }
+ *
+ * @apiError NotFound Tag not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Tag not found"
+ *     }
+ *
+ * @apiError InternalServerError Failed to delete tag.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to delete tag: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {get} /tag/ Listar Tags
+ * @apiName ListarTags
+ * @apiGroup Tags
+ *
+ * @apiSuccess {Object[]} tags Lista de tags.
+ * @apiSuccess {String} id ID único da tag.
+ * @apiSuccess {String} name Nome da tag.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *         "id": "1",
+ *         "name": "Tag1"
+ *       },
+ *       {
+ *         "id": "2",
+ *         "name": "Tag2"
+ *       }
+ *     ]
+ *
+ * @apiError InternalServerError Failed to list tags.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to list tags: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {put} /tag/:id Atualizar Tag
+ * @apiName AtualizarTag
+ * @apiGroup Tags
+ *
+ * @apiParam {String} id ID da tag a ser atualizada.
+ * @apiParam {String} name Novo nome da tag.
+ *
+ * @apiSuccess {String} id ID único da tag atualizada.
+ * @apiSuccess {String} name Nome atualizado da tag.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "name": "Tag1"
+ *     }
+ *
+ * @apiError BadRequest Id from tag or name not provided.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Id from tag or name not provided"
+ *     }
+ *
+ * @apiError NotFound Tag not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Tag not found"
+ *     }
+ *
+ * @apiError InternalServerError Failed to update tag.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to update tag: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {post} /category/ Criar Categoria
+ * @apiName CriarCategoria
+ * @apiGroup Categorias
+ *
+ * @apiParam {String} name Nome da categoria a ser criada.
+ * @apiParam {String} description Descrição da categoria a ser criada.
+ *
+ * @apiSuccess {String} id ID único da categoria.
+ * @apiSuccess {String} name Nome da categoria.
+ * @apiSuccess {String} description Descrição da categoria.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "name": "Categoria1",
+ *       "description": "Descrição da Categoria1"
+ *     }
+ *
+ * @apiError BadRequest Invalid data.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Invalid data"
+ *     }
+ *
+ * @apiError InternalServerError Failed to create category.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to create category: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {delete} /category/:id Deletar Categoria
+ * @apiName DeletarCategoria
+ * @apiGroup Categorias
+ *
+ * @apiParam {String} id ID da categoria a ser deletada.
+ *
+ * @apiSuccess {String} id ID único da categoria deletada.
+ * @apiSuccess {String} name Nome da categoria deletada.
+ * @apiSuccess {String} description Descrição da categoria deletada.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "name": "Categoria1",
+ *       "description": "Descrição da Categoria1"
+ *     }
+ *
+ * @apiError BadRequest ID from post is required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "ID from post is required"
+ *     }
+ *
+ * @apiError NotFound Category not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Category not found"
+ *     }
+ *
+ * @apiError InternalServerError Failed to delete category.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to delete category: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {get} /category/:id Obter Categoria por ID
+ * @apiName ObterCategoriaPorID
+ * @apiGroup Categorias
+ *
+ * @apiParam {String} id ID da categoria a ser obtida.
+ *
+ * @apiSuccess {String} id ID único da categoria.
+ * @apiSuccess {String} name Nome da categoria.
+ * @apiSuccess {String} description Descrição da categoria.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "name": "Categoria1",
+ *       "description": "Descrição da Categoria1"
+ *     }
+ *
+ * @apiError BadRequest Id from category is required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Id from category is required"
+ *     }
+ *
+ * @apiError NotFound Category not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Category not found"
+ *     }
+ *
+ * @apiError InternalServerError Failed to get category.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to get category: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {get} /category/ Listar Categorias
+ * @apiName ListarCategorias
+ * @apiGroup Categorias
+ *
+ * @apiSuccess {Object[]} categories Lista de categorias.
+ * @apiSuccess {String} id ID único da categoria.
+ * @apiSuccess {String} name Nome da categoria.
+ * @apiSuccess {String} description Descrição da categoria.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *         "id": "1",
+ *         "name": "Categoria1",
+ *         "description": "Descrição da Categoria1"
+ *       },
+ *       {
+ *         "id": "2",
+ *         "name": "Categoria2",
+ *         "description": "Descrição da Categoria2"
+ *       }
+ *     ]
+ *
+ * @apiError InternalServerError Failed to list categories.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to list all categories: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {put} /category/:id Atualizar Categoria
+ * @apiName AtualizarCategoria
+ * @apiGroup Categorias
+ *
+ * @apiParam {String} id ID da categoria a ser atualizada.
+ * @apiParam {String} name Novo nome da categoria.
+ * @apiParam {String} description Nova descrição da categoria.
+ *
+ * @apiSuccess {String} id ID único da categoria atualizada.
+ * @apiSuccess {String} name Nome atualizado da categoria.
+ * @apiSuccess {String} description Descrição atualizada da categoria.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "name": "Categoria1",
+ *       "description": "Descrição da Categoria1"
+ *     }
+ *
+ * @apiError BadRequest ID from post or name or description is required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "ID from post or name or description is required"
+ *     }
+ *
+ * @apiError NotFound Category not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Category not found"
+ *     }
+ *
+ * @apiError InternalServerError Failed to update category.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to update category: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {post} /post/ Criar Post
+ * @apiName CriarPost
+ * @apiGroup Posts
+ *
+ * @apiParam {String} title Título do post.
+ * @apiParam {String} content Conteúdo do post.
+ * @apiParam {Object[]} files Arquivos de mídia do post (fotos e vídeos). Os dados devem ser enviados como multipart/form-data.
+ *
+ * @apiSuccess {String} id ID único do post.
+ * @apiSuccess {String} title Título do post.
+ * @apiSuccess {String} content Conteúdo do post.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post.
+ * @apiSuccess {Boolean} published Status de publicação do post.
+ * @apiSuccess {Date} publishedAt Data de publicação do post.
+ * @apiSuccess {Object[]} categories Categorias do post.
+ * @apiSuccess {Object[]} tags Tags do post.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "title": "Post1",
+ *       "content": "Conteúdo do Post1",
+ *       "photoUrls": ["url1", "url2"],
+ *       "videoUrls": ["url3", "url4"],
+ *       "published": true,
+ *       "publishedAt": "2022-01-01T00:00:00.000Z",
+ *       "categories": [],
+ *       "tags": []
+ *     }
+ *
+ * @apiError BadRequest Title and Content are required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Title and Content are required"
+ *     }
+ *
+ * @apiError InternalServerError Error during upload.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Error during upload: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {delete} /post/image/delete/:id Remover Imagem do Post
+ * @apiName RemoverImagemDoPost
+ * @apiGroup Posts
+ *
+ * @apiParam {String} id ID do post.
+ * @apiParam {String[]} urlPost URLs da imagem a ser removida.
+ *
+ * @apiSuccess {Boolean} success Indica se a imagem foi removida com sucesso.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "success": true
+ *     }
+ *
+ * @apiError BadRequest ID and URL are required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "ID and URL are required"
+ *     }
+ *
+ * @apiError NotFound Post or Image not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Post or Image not found"
+ *     }
+ *
+ * @apiError InternalServerError Error during delete image from post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Error during delete image from post: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {delete} /post/:id Remover Post
+ * @apiName RemoverPost
+ * @apiGroup Posts
+ *
+ * @apiParam {String} id ID do post a ser removido.
+ *
+ * @apiSuccess {String} id ID único do post removido.
+ * @apiSuccess {String} title Título do post removido.
+ * @apiSuccess {String} content Conteúdo do post removido.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post removido.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post removido.
+ * @apiSuccess {Boolean} published Status de publicação do post removido.
+ * @apiSuccess {Date} publishedAt Data de publicação do post removido.
+ * @apiSuccess {Object[]} categories Categorias do post removido.
+ * @apiSuccess {Object[]} tags Tags do post removido.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "title": "Post1",
+ *       "content": "Conteúdo do Post1",
+ *       "photoUrls": ["url1", "url2"],
+ *       "videoUrls": ["url3", "url4"],
+ *       "published": true,
+ *       "publishedAt": "2022-01-01T00:00:00.000Z",
+ *       "categories": [],
+ *       "tags": []
+ *     }
+ *
+ * @apiError BadRequest ID from Post is required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "ID from Post is required"
+ *     }
+ *
+ * @apiError NotFound Post not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Post not found"
+ *     }
+ *
+ * @apiError InternalServerError Failed to delete post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to delete post: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {get} /post/:id Obter Post por ID
+ * @apiName ObterPostPorID
+ * @apiGroup Posts
+ *
+ * @apiParam {String} id ID do post a ser obtido.
+ *
+ * @apiSuccess {String} id ID único do post.
+ * @apiSuccess {String} title Título do post.
+ * @apiSuccess {String} content Conteúdo do post.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post.
+ * @apiSuccess {Boolean} published Status de publicação do post.
+ * @apiSuccess {Date} publishedAt Data de publicação do post.
+ * @apiSuccess {Object[]} categories Categorias do post.
+ * @apiSuccess {Object[]} tags Tags do post.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "title": "Post1",
+ *       "content": "Conteúdo do Post1",
+ *       "photoUrls": ["url1", "url2"],
+ *       "videoUrls": ["url3", "url4"],
+ *       "published": true,
+ *       "publishedAt": "2022-01-01T00:00:00.000Z",
+ *       "categories": [],
+ *       "tags": []
+ *     }
+ *
+ * @apiError BadRequest ID from Post is required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "ID from Post is required"
+ *     }
+ *
+ * @apiError NotFound Post not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Post not found"
+ *     }
+ *
+ * @apiError InternalServerError Failed to get post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to get post: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {put} /post/category/:id Inserir Categoria em Post
+ * @apiName InserirCategoriaEmPost
+ * @apiGroup Posts
+ *
+ * @apiParam {String} id ID do post.
+ * @apiParam {String} categoryId ID da categoria a ser inserida.
+ *
+ * @apiSuccess {String} id ID único do post.
+ * @apiSuccess {String} title Título do post.
+ * @apiSuccess {String} content Conteúdo do post.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post.
+ * @apiSuccess {Boolean} published Status de publicação do post.
+ * @apiSuccess {Date} publishedAt Data de publicação do post.
+ * @apiSuccess {Object[]} categories Categorias do post.
+ * @apiSuccess {Object[]} tags Tags do post.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "title": "Post1",
+ *       "content": "Conteúdo do Post1",
+ *       "photoUrls": ["url1", "url2"],
+ *       "videoUrls": ["url3", "url4"],
+ *       "published": true,
+ *       "publishedAt": "2022-01-01T00:00:00.000Z",
+ *       "categories": [{"id": "1", "name": "Categoria1"}],
+ *       "tags": []
+ *     }
+ *
+ * @apiError BadRequest Post ID and Category ID are required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Post ID and Category ID are required"
+ *     }
+ *
+ * @apiError NotFound Post or Category not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Post or Category not found"
+ *     }
+ *
+ * @apiError Conflict Category already inserted in this post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 409 Conflict
+ *     {
+ *       "error": "Category already inserted in this post"
+ *     }
+ *
+ * @apiError InternalServerError Failed to insert category in Post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to insert category in Post: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {put} /post/tag/:id Inserir Tag em Post
+ * @apiName InserirTagEmPost
+ * @apiGroup Posts
+ *
+ * @apiParam {String} id ID do post.
+ * @apiParam {String} tagId ID da tag a ser inserida.
+ *
+ * @apiSuccess {String} id ID único do post.
+ * @apiSuccess {String} title Título do post.
+ * @apiSuccess {String} content Conteúdo do post.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post.
+ * @apiSuccess {Boolean} published Status de publicação do post.
+ * @apiSuccess {Date} publishedAt Data de publicação do post.
+ * @apiSuccess {Object[]} categories Categorias do post.
+ * @apiSuccess {Object[]} tags Tags do post.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "title": "Post1",
+ *       "content": "Conteúdo do Post1",
+ *       "photoUrls": ["url1", "url2"],
+ *       "videoUrls": ["url3", "url4"],
+ *       "published": true,
+ *       "publishedAt": "2022-01-01T00:00:00.000Z",
+ *       "categories": [],
+ *       "tags": [{"id": "1", "name": "Tag1"}]
+ *     }
+ *
+ * @apiError BadRequest Post ID and Tag ID are required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Post ID and Tag ID are required"
+ *     }
+ *
+ * @apiError NotFound Post or Tag not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Post or Tag not found"
+ *     }
+ *
+ * @apiError Conflict Tag already inserted in this post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 409 Conflict
+ *     {
+ *       "error": "Tag already inserted in this post"
+ *     }
+ *
+ * @apiError InternalServerError Failed to insert tag in Post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to insert tag in Post: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {get} /posts Listar Todos os Posts
+ * @apiName ListarTodosOsPosts
+ * @apiGroup Posts
+ *
+ * @apiSuccess {Object[]} posts Lista de posts.
+ * @apiSuccess {String} id ID único do post.
+ * @apiSuccess {String} title Título do post.
+ * @apiSuccess {String} content Conteúdo do post.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post.
+ * @apiSuccess {Boolean} published Status de publicação do post.
+ * @apiSuccess {Date} publishedAt Data de publicação do post.
+ * @apiSuccess {Object[]} categories Categorias do post.
+ * @apiSuccess {Object[]} tags Tags do post.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *         "id": "1",
+ *         "title": "Post1",
+ *         "content": "Conteúdo do Post1",
+ *         "photoUrls": ["url1", "url2"],
+ *         "videoUrls": ["url3", "url4"],
+ *         "published": true,
+ *         "publishedAt": "2022-01-01T00:00:00.000Z",
+ *         "categories": [{"id": "1", "name": "Categoria1"}],
+ *         "tags": [{"id": "1", "name": "Tag1"}]
+ *       },
+ *       ...
+ *     ]
+ *
+ * @apiError InternalServerError Failed to list all posts.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to list all posts: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {put} /post/category/delete/:id Remover Categoria de Post
+ * @apiName RemoverCategoriaDePost
+ * @apiGroup Posts
+ *
+ * @apiParam {String} id ID do post.
+ * @apiParam {String} categoryId ID da categoria a ser removida.
+ *
+ * @apiSuccess {String} id ID único do post.
+ * @apiSuccess {String} title Título do post.
+ * @apiSuccess {String} content Conteúdo do post.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post.
+ * @apiSuccess {Boolean} published Status de publicação do post.
+ * @apiSuccess {Date} publishedAt Data de publicação do post.
+ * @apiSuccess {Object[]} categories Categorias do post.
+ * @apiSuccess {Object[]} tags Tags do post.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "title": "Post1",
+ *       "content": "Conteúdo do Post1",
+ *       "photoUrls": ["url1", "url2"],
+ *       "videoUrls": ["url3", "url4"],
+ *       "published": true,
+ *       "publishedAt": "2022-01-01T00:00:00.000Z",
+ *       "categories": [],
+ *       "tags": [{"id": "1", "name": "Tag1"}]
+ *     }
+ *
+ * @apiError BadRequest Post ID and Category ID are required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Post ID and Category ID are required"
+ *     }
+ *
+ * @apiError NotFound Post or Category not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Post or Category not found"
+ *     }
+ *
+ * @apiError Conflict Category not inserted in this post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 409 Conflict
+ *     {
+ *       "error": "Category not inserted in this post"
+ *     }
+ *
+ * @apiError InternalServerError Failed to remove category from Post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to remove category from Post: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {put} /post/tag/delete/:id Remover Tag de Post
+ * @apiName RemoverTagDePost
+ * @apiGroup Posts
+ *
+ * @apiParam {String} id ID do post.
+ * @apiParam {String} tagId ID da tag a ser removida.
+ *
+ * @apiSuccess {String} id ID único do post.
+ * @apiSuccess {String} title Título do post.
+ * @apiSuccess {String} content Conteúdo do post.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post.
+ * @apiSuccess {Boolean} published Status de publicação do post.
+ * @apiSuccess {Date} publishedAt Data de publicação do post.
+ * @apiSuccess {Object[]} categories Categorias do post.
+ * @apiSuccess {Object[]} tags Tags do post.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "title": "Post1",
+ *       "content": "Conteúdo do Post1",
+ *       "photoUrls": ["url1", "url2"],
+ *       "videoUrls": ["url3", "url4"],
+ *       "published": true,
+ *       "publishedAt": "2022-01-01T00:00:00.000Z",
+ *       "categories": [{"id": "1", "name": "Categoria1"}],
+ *       "tags": []
+ *     }
+ *
+ * @apiError BadRequest Post ID and Tag ID are required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Post ID and Tag ID are required"
+ *     }
+ *
+ * @apiError NotFound Post or Tag not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Post or Tag not found"
+ *     }
+ *
+ * @apiError Conflict Tag not inserted in this post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 409 Conflict
+ *     {
+ *       "error": "Tag not inserted in this post"
+ *     }
+ *
+ * @apiError InternalServerError Failed to remove tag from Post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to remove tag from Post: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {put} /post/:id Atualizar Post
+ * @apiName AtualizarPost
+ * @apiGroup Posts
+ *
+ * @apiParam {String} id ID do post.
+ * @apiParam {String} title Título do post.
+ * @apiParam {String} content Conteúdo do post.
+ *
+ * @apiSuccess {String} id ID único do post.
+ * @apiSuccess {String} title Título do post.
+ * @apiSuccess {String} content Conteúdo do post.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post.
+ * @apiSuccess {Boolean} published Status de publicação do post.
+ * @apiSuccess {Date} publishedAt Data de publicação do post.
+ * @apiSuccess {Object[]} categories Categorias do post.
+ * @apiSuccess {Object[]} tags Tags do post.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "title": "Post1",
+ *       "content": "Conteúdo do Post1",
+ *       "photoUrls": ["url1", "url2"],
+ *       "videoUrls": ["url3", "url4"],
+ *       "published": true,
+ *       "publishedAt": "2022-01-01T00:00:00.000Z",
+ *       "categories": [{"id": "1", "name": "Categoria1"}],
+ *       "tags": [{"id": "1", "name": "Tag1"}]
+ *     }
+ *
+ * @apiError BadRequest Post ID, Title and Content are required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Post ID, Title and Content are required"
+ *     }
+ *
+ * @apiError NotFound Post not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Post not found"
+ *     }
+ *
+ * @apiError InternalServerError Failed to update post.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to update post: Internal Prisma error"
+ *     }
+ */
+
+/**
+ * @api {put} /post/status/:id Atualizar Status de Publicação de Post
+ * @apiName AtualizarStatusDePublicacaoDePost
+ * @apiGroup Posts
+ *
+ * @apiParam {String} id ID do post.
+ * @apiParam {Boolean} published Status de publicação do post.
+ *
+ * @apiSuccess {String} id ID único do post.
+ * @apiSuccess {String} title Título do post.
+ * @apiSuccess {String} content Conteúdo do post.
+ * @apiSuccess {String[]} photoUrls URLs das fotos do post.
+ * @apiSuccess {String[]} videoUrls URLs dos vídeos do post.
+ * @apiSuccess {Boolean} published Status de publicação do post.
+ * @apiSuccess {Date} publishedAt Data de publicação do post.
+ * @apiSuccess {Object[]} categories Categorias do post.
+ * @apiSuccess {Object[]} tags Tags do post.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": "1",
+ *       "title": "Post1",
+ *       "content": "Conteúdo do Post1",
+ *       "photoUrls": ["url1", "url2"],
+ *       "videoUrls": ["url3", "url4"],
+ *       "published": true,
+ *       "publishedAt": "2022-01-01T00:00:00.000Z",
+ *       "categories": [{"id": "1", "name": "Categoria1"}],
+ *       "tags": [{"id": "1", "name": "Tag1"}]
+ *     }
+ *
+ * @apiError BadRequest Post ID and Published status are required.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error": "Post ID and Published status are required"
+ *     }
+ *
+ * @apiError NotFound Post not found.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "Post not found"
+ *     }
+ *
+ * @apiError InternalServerError Failed to update post status.
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *       "error": "Failed to update post status: Internal Prisma error"
+ *     }
+ */
