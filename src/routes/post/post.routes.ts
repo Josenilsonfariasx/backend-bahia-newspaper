@@ -22,7 +22,8 @@ export const postRoutes = Router()
 
 // post
 const upload = multer(uploadConfig);
-postRoutes.post('/', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostController().handle)
+
+// postRoutes.post('/', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostController().handle)
 // postRoutes.post('/schedule', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostScheduleController().handle)
 postRoutes.post('/category/:id', isAuthenticated, new InsertCategoryInPostController().handle)
 postRoutes.post('/tag/:id', isAuthenticated, new InsertTagInPostController().handle)

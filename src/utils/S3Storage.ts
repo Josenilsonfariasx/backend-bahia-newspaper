@@ -2,16 +2,24 @@ import path from 'path';
 import fs from 'fs';
 import mime from 'mime-types';
 import aws, { S3 } from 'aws-sdk';
-
 import uploadConfig from '../configs/multerConfig';
 
 class S3Storage {
+  private static instance: S3Storage;
   private client: S3;
 
-  constructor() {
+  private constructor() {
     this.client = new aws.S3({
       region: 'us-east-1',
     });
+  }
+
+  // Implementação do padrão Singleton para reutilizar a instância da classe S3Storage
+  public static getInstance(): S3Storage {
+    if (!S3Storage.instance) {
+      S3Storage.instance = new S3Storage();
+    }
+    return S3Storage.instance;
   }
 
   async saveFile(filename: string): Promise<string> {
@@ -23,10 +31,11 @@ class S3Storage {
       throw new Error('File not found');
     }
 
-    const fileContent = await fs.promises.readFile(originalPath);
+    // Cria um stream de leitura para ler o arquivo
+    const fileContent = fs.createReadStream(originalPath);
 
     await this.client
-      .putObject({
+      .upload({
         Bucket: 'aula-youtube1',
         Key: filename,
         ACL: 'public-read',
