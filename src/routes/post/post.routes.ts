@@ -9,8 +9,8 @@ import { DeletePostController } from "../../controllers/post/DeletePostControlle
 import { GetPostByIdController } from "../../controllers/post/GetPostByIdController";
 import { UpdateStatusPostController } from "../../controllers/post/UpdateStatusPostController";
 import { DeleteImageFromPostController } from "../../controllers/post/DeleteImageFromPostController";
-import { CreatePostScheduleController } from "../../controllers/post/CreatePostScheduleController";
-import { CancelAppointmentPostController } from "../../controllers/post/CancelAppointmentPostController";
+// import { CreatePostScheduleController } from "../../controllers/post/CreatePostScheduleController";
+// import { CancelAppointmentPostController } from "../../controllers/post/CancelAppointmentPostController";
 import { InsertCategoryInPostController } from "../../controllers/post/InsertCategoryInPostController";
 import { RemoveCategoryFromPostController } from "../../controllers/post/RemoveCategoryFromPostController";
 import { InsertTagInPostController } from "../../controllers/post/InsertTagInPostController";
