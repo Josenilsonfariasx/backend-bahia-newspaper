@@ -4,7 +4,7 @@
   "description": "Backend para o jornal online da Bahia.",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_OPTIONS='--max-old-space-size=4096' ts-node-dev --cls --rs --ignore-watch node_modules src/server.ts"
+    "dev": "ts-node-dev --cls --rs --ignore-watch node_modules src/server.ts"
   },
   "keywords": [],
   "author": "",
