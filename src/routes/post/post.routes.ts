@@ -23,7 +23,7 @@ export const postRoutes = Router()
 // post
 const upload = multer(uploadConfig);
 postRoutes.post('/', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostController().handle)
-postRoutes.post('/schedule', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostScheduleController().handle)
+// postRoutes.post('/schedule', isAuthenticated, upload.array('files', 10), isAuthenticated, new CreatePostScheduleController().handle)
 postRoutes.post('/category/:id', isAuthenticated, new InsertCategoryInPostController().handle)
 postRoutes.post('/tag/:id', isAuthenticated, new InsertTagInPostController().handle)
 
@@ -34,7 +34,7 @@ postRoutes.get('/:id', isAuthenticated, new GetPostByIdController().handle)
 // put
 postRoutes.put('/:id', isAuthenticated, new UpdatePostController().handle)
 postRoutes.put('/status/:id', isAuthenticated, new UpdateStatusPostController().handle)
-postRoutes.put('/schedule/cancel/:id', isAuthenticated, new CancelAppointmentPostController().handle)
+// postRoutes.put('/schedule/cancel/:id', isAuthenticated, new CancelAppointmentPostController().handle)
 
 // delete
 postRoutes.delete('/:id', isAuthenticated, new DeletePostController().handle)
