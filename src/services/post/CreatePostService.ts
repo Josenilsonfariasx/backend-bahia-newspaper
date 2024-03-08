@@ -1,6 +1,7 @@
 import multer from 'multer'
 import UploadImagesService from '../aws/uploadImagesService';
 import prismaClient from '../../prisma';
+// import heapdump from 'heapdump';
 
 interface PostRequest {
   title: string;
@@ -23,17 +24,21 @@ class CreatePostService {
               videos.push(file);
           }
       }
+      // Cria uma única instância de UploadImagesService
+      const uploadService = new UploadImagesService();
+
       // Executar o serviço de upload para cada arquivo de foto
       const uploadedPhotos = await Promise.all(photos.map(async (file) => {
-        const fileUrl = await new UploadImagesService().execute(file);
+        const fileUrl = await uploadService.execute(file);
         return { filename: file.originalname, url: fileUrl };
     }));
 
     // Executar o serviço de upload para cada arquivo de vídeo
     const uploadedVideos = await Promise.all(videos.map(async (file) => {
-        const fileUrl = await new UploadImagesService().execute(file);
+        const fileUrl = await uploadService.execute(file);
         return { filename: file.originalname, url: fileUrl };
     }));
+
       const post = await prismaClient.post.create({
         data:{
           title: title,
@@ -47,8 +52,12 @@ class CreatePostService {
           tags: true
         }
       })
+      // heapdump.writeSnapshot((err, filename) => {
+      //   if (err) console.error(err);
+      //   else console.log('Snapshot salvo em', filename);
+      // });
       return post;
-  } catch (error) {
+    } catch (error) {
       console.error('Erro durante o upload:', error);
       throw new Error('Erro durante o upload'+ error.message);
     }
