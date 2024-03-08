@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { isAuthenticated } from "../../middlewares/isAuthenticated";
-import { CreatePostController } from "../../controllers/post/CreatePostController";
+// import { CreatePostController } from "../../controllers/post/CreatePostController";
 import multer from "multer";
 import uploadConfig from '../../configs/multerConfig';
 import { ListAllPostController } from "../../controllers/post/ListAllPostController";
@@ -8,7 +8,7 @@ import { UpdatePostController } from "../../controllers/post/UpdatePostControlle
 import { DeletePostController } from "../../controllers/post/DeletePostController";
 import { GetPostByIdController } from "../../controllers/post/GetPostByIdController";
 import { UpdateStatusPostController } from "../../controllers/post/UpdateStatusPostController";
-import { DeleteImageFromPostController } from "../../controllers/post/DeleteImageFromPostController";
+// import { DeleteImageFromPostController } from "../../controllers/post/DeleteImageFromPostController";
 // import { CreatePostScheduleController } from "../../controllers/post/CreatePostScheduleController";
 // import { CancelAppointmentPostController } from "../../controllers/post/CancelAppointmentPostController";
 import { InsertCategoryInPostController } from "../../controllers/post/InsertCategoryInPostController";
@@ -39,6 +39,6 @@ postRoutes.put('/status/:id', isAuthenticated, new UpdateStatusPostController().
 
 // delete
 postRoutes.delete('/:id', isAuthenticated, new DeletePostController().handle)
-postRoutes.delete('/image/delete/:id', isAuthenticated, new DeleteImageFromPostController().handle)
+// postRoutes.delete('/image/delete/:id', isAuthenticated, new DeleteImageFromPostController().handle)
 postRoutes.delete('/category/delete/:id', isAuthenticated, new RemoveCategoryFromPostController().handle)
 postRoutes.delete('/tag/delete/:id', isAuthenticated, new RemoveTagFromPostController().handle)
