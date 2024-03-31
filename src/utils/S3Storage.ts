@@ -28,29 +28,32 @@ class S3Storage {
     const ContentType = mime.lookup(originalPath);
 
     if (!ContentType) {
-      throw new Error('File not found');
+        throw new Error('File not found');
     }
 
     // Cria um stream de leitura para ler o arquivo
     const fileContent = fs.createReadStream(originalPath);
 
     await this.client
-      .upload({
-        Bucket: 'aula-youtube1',
-        Key: filename,
-        ACL: 'public-read',
-        Body: fileContent,
-        ContentType,
-      })
-      .promise();
+        .upload({
+            Bucket: 'aula-youtube1',
+            Key: filename,
+            ACL: 'public-read',
+            Body: fileContent,
+            ContentType,
+        })
+        .promise();
 
     await fs.promises.unlink(originalPath);
+
+    // Chama a função de limpeza para remover os arquivos temporários após o upload
+    uploadConfig.cleanup();
 
     // Construir a URL do objeto
     const fileUrl = `https://aula-youtube1.s3.amazonaws.com/${filename}`;
 
     return fileUrl;
-  }
+      }
 
   async deleteFile(filename: string) {
     const params = {
