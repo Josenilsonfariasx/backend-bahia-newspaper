@@ -1,7 +1,6 @@
 import multer from 'multer'
 import UploadImagesService from '../aws/uploadImagesService';
 import prismaClient from '../../prisma';
-// import heapdump from 'heapdump';
 
 interface PostRequest {
   title: string;
@@ -14,36 +13,33 @@ class CreatePostService {
     try {
       if(!title || !content) throw new Error('Title and Content are required')
 
-      const photos = [];
-      const videos = [];
-      for (const file of files) {
-          if (file.mimetype.startsWith('image')) {
-              photos.push(file);
-          } else if (file.mimetype.startsWith('video')) {
-              videos.push(file);
-          }
-      }
-
       const uploadService = new UploadImagesService();
 
-      const uploadedPhotos = [];
-      for (const file of photos) {
+      const uploadFile = async (file: Express.Multer.File) => {
         const fileUrl = await uploadService.execute(file);
-        uploadedPhotos.push({ filename: file.originalname, url: fileUrl });
+        return { filename: file.originalname, url: fileUrl };
       }
 
-      const uploadedVideos = [];
-      for (const file of videos) {
-        const fileUrl = await uploadService.execute(file);
-        uploadedVideos.push({ filename: file.originalname, url: fileUrl });
-      }
+      const [photos, videos] = files.reduce((acc, file) => {
+        if (file.mimetype.startsWith('image')) {
+          acc[0].push(file);
+        } else if (file.mimetype.startsWith('video')) {
+          acc[1].push(file);
+        }
+        return acc;
+      }, [[], []]);
+
+      const [uploadedPhotos, uploadedVideos] = await Promise.all([
+        Promise.all(photos.map(uploadFile)),
+        Promise.all(videos.map(uploadFile))
+      ]);
 
       const post = await prismaClient.post.create({
         data:{
-          title: title,
-          content:content,
-          photoUrls: uploadedPhotos.map(photo => photo.url),
-          videoUrls: uploadedVideos.map(video => video.url),
+          title,
+          content,
+          photoUrls: uploadedPhotos.map(({ url }) => url),
+          videoUrls: uploadedVideos.map(({ url }) => url),
           published: true,
           publishedAt: new Date()
         }, include: {

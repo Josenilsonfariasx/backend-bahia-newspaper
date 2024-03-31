@@ -58,12 +58,8 @@ class S3Storage {
       Key: filename
     };
 
-    return new Promise((resolve, reject) => {
-      this.client.deleteObject(params, (err, data) => {
-        if (err) reject(err);
-        else resolve(data);
-      });
-    });
+    // Usar promessas em vez de callbacks
+    await this.client.deleteObject(params).promise();
   }
 }
 
