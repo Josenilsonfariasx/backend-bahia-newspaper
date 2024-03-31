@@ -3,7 +3,7 @@ import S3Storage from "../../utils/S3Storage";
 class DeleteImageService {
   async execute(filenames: string | string[]) {
     try {
-      const s3 = new S3Storage()
+      const s3 = S3Storage.getInstance();
       console.log(filenames)
   
       if (typeof filenames === 'string') {
