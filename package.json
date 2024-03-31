@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Backend para o jornal online da Bahia.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "ts-node-dev --cls --rs --ignore-watch node_modules src/server.ts"
   },
