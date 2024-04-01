@@ -10,5 +10,5 @@ class UpdateStatusPostController {
     return res.json(post)
   }
 }
-
+// 
 export { UpdateStatusPostController };
