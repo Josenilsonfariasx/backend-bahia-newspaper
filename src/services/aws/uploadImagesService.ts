@@ -1,13 +1,13 @@
-// import S3Storage from '../../utils/S3Storage';
+import S3Storage from '../../utils/S3Storage';
 
-// class UploadImagesService {
-//     async execute(file: Express.Multer.File): Promise<string> {
-//         const s3 = S3Storage.getInstance();
-//         const fileUrl = await s3.saveFile(file.filename)
-//         console.log(file)
-//         // Retorna a URL
-//         return fileUrl;
-//     }
-// }
+const s3 = S3Storage.getInstance();
 
-// export default UploadImagesService;
+class UploadImagesService {
+  async execute(file: Express.Multer.File): Promise<string> {
+    const fileUrl = await s3.saveFile(file.filename)
+    // Retorna a URL
+    return fileUrl;
+  }
+}
+
+export default UploadImagesService;
