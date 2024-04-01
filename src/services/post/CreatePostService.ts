@@ -29,10 +29,17 @@ class CreatePostService {
         return acc;
       }, [[], []]);
 
-      const [uploadedPhotos, uploadedVideos] = await Promise.all([
-        Promise.all(photos.map(uploadFile)),
-        Promise.all(videos.map(uploadFile))
-      ]);
+      const uploadedPhotos = [];
+      for (const photo of photos) {
+        const uploadedPhoto = await uploadFile(photo);
+        uploadedPhotos.push(uploadedPhoto);
+      }
+
+      const uploadedVideos = [];
+      for (const video of videos) {
+        const uploadedVideo = await uploadFile(video);
+        uploadedVideos.push(uploadedVideo);
+      }
 
       const post = await prismaClient.post.create({
         data:{
