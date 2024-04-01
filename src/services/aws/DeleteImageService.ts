@@ -1,11 +1,10 @@
 import S3Storage from "../../utils/S3Storage";
 
+const s3 = S3Storage.getInstance();
+
 class DeleteImageService {
   async execute(filenames: string | string[]) {
     try {
-      const s3 = S3Storage.getInstance();
-      console.log(filenames)
-  
       if (typeof filenames === 'string') {
         // Se filenames for uma única string, delete o arquivo e retorne um array com o resultado
         const file = await s3.deleteFile(filenames);

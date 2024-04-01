@@ -8,12 +8,12 @@ interface PostRequest {
   files: Express.Multer.File[]
 }
 
+const uploadService = new UploadImagesService();
+
 class CreatePostService {
   async execute({ title, content, files }: PostRequest) {
     try {
       if(!title || !content) throw new Error('Title and Content are required')
-
-      const uploadService = new UploadImagesService();
 
       const uploadFile = async (file: Express.Multer.File) => {
         const fileUrl = await uploadService.execute(file);
@@ -50,7 +50,6 @@ class CreatePostService {
 
       return post;
     } catch (error) {
-      console.error('Erro durante o upload:', error);
       throw new Error('Erro durante o upload'+ error.message);
     }
   }
