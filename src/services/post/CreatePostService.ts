@@ -13,7 +13,7 @@ class CreatePostService {
     try {
       if(!title || !content) throw new Error('Title and Content are required')
 
-      const uploadService = new UploadImagesService();
+      // const uploadService = new UploadImagesService();
 
       // const uploadFile = async (file: Express.Multer.File) => {
       //   const fileUrl = await uploadService.execute(file);
