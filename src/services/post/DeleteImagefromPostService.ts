@@ -1,5 +1,5 @@
 import prismaClient from "../../prisma";
-import { DeleteImageService } from "../aws/DeleteImageService";
+// import { DeleteImageService } from "../aws/DeleteImageService";
 
 interface PostRequest {
   id: string;
@@ -22,12 +22,12 @@ class DeleteImagefromPostService {
       if(!imageAlreadyExists) throw new Error('Image not found in the post')
 
       // Reutilize uma única instância do serviço DeleteImageService
-      const deleteImageService = new DeleteImageService();
+      // const deleteImageService = new DeleteImageService();
 
       // Processar os arquivos um de cada vez
-      for (const file of files) {
-        await deleteImageService.execute(file);
-      }
+      // for (const file of files) {
+      //   await deleteImageService.execute(file);
+      // }
 
       // Otimizar a operação de filtragem
       const newPhotoUrls = post.photoUrls.filter(photo => !urlPost.includes(photo))
