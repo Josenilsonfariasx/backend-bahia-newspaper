@@ -20,33 +20,17 @@ class CreatePostService {
         return { filename: file.originalname, url: fileUrl };
       }
 
-      const [photos, videos] = files.reduce((acc, file) => {
-        if (file.mimetype.startsWith('image')) {
-          acc[0].push(file);
-        } else if (file.mimetype.startsWith('video')) {
-          acc[1].push(file);
-        }
-        return acc;
-      }, [[], []]);
-
-      const uploadedPhotos = [];
-      for (const photo of photos) {
-        const uploadedPhoto = await uploadFile(photo);
-        uploadedPhotos.push(uploadedPhoto);
-      }
-
-      const uploadedVideos = [];
-      for (const video of videos) {
-        const uploadedVideo = await uploadFile(video);
-        uploadedVideos.push(uploadedVideo);
+      const uploadedFiles = [];
+      for (const file of files) {
+        const uploadedFile = await uploadFile(file);
+        uploadedFiles.push(uploadedFile);
       }
 
       const post = await prismaClient.post.create({
         data:{
           title,
           content,
-          photoUrls: uploadedPhotos.map(({ url }) => url),
-          videoUrls: uploadedVideos.map(({ url }) => url),
+          photoUrls: uploadedFiles.map(({ url }) => url),
           published: true,
           publishedAt: new Date()
         }, include: {
