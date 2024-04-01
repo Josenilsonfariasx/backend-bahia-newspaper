@@ -1,5 +1,5 @@
 import multer from 'multer'
-import UploadImagesService from '../aws/uploadImagesService';
+// import UploadImagesService from '../aws/uploadImagesService';
 import prismaClient from '../../prisma';
 
 interface PostRequest {
