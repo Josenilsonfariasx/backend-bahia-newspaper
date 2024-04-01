@@ -15,10 +15,10 @@ class CreatePostService {
 
       const uploadService = new UploadImagesService();
 
-      const uploadFile = async (file: Express.Multer.File) => {
-        const fileUrl = await uploadService.execute(file);
-        return { filename: file.originalname, url: fileUrl };
-      }
+      // const uploadFile = async (file: Express.Multer.File) => {
+      //   const fileUrl = await uploadService.execute(file);
+      //   return { filename: file.originalname, url: fileUrl };
+      // }
 
       const [photos, videos] = files.reduce((acc, file) => {
         if (file.mimetype.startsWith('image')) {
