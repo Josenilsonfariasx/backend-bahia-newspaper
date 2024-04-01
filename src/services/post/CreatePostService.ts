@@ -38,8 +38,8 @@ class CreatePostService {
         data:{
           title,
           content,
-          // photoUrls: uploadedPhotos.map(({ url }) => url),
-          // videoUrls: uploadedVideos.map(({ url }) => url),
+          photoUrls: uploadedPhotos.map(({ url }) => url),
+          videoUrls: uploadedVideos.map(({ url }) => url),
           published: true,
           publishedAt: new Date()
         }, include: {
