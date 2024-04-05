@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql" 
-  url      = "postgres://newspaper_pg_user:JZg3MMmX9pWZgIvKqUnN3xCN9GzUpZrN@dpg-cn53557109ks73f0t3tg-a.ohio-postgres.render.com/newspaper_pg"
+  url      = env("DATABASE_URL")
 }
 
 // schema.prisma
