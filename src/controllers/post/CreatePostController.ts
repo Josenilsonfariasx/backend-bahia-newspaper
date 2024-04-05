@@ -3,10 +3,10 @@ import { CreatePostService } from "../../services/post/CreatePostService";
 
 class CreatePostController {
   async handle(req: Request, res: Response) {
-    const files: Express.Multer.File[] = req.files as Express.Multer.File[]
+    const file: Express.Multer.File = req.file as Express.Multer.File
     const { title, content } = req.body
     const createPostService = new CreatePostService()
-    const post = await createPostService.execute({ title, content, files })
+    const post = await createPostService.execute({ title, content, file })
     return res.json(post)
   }
 }
