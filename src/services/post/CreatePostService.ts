@@ -8,6 +8,8 @@ interface PostRequest {
   files: Express.Multer.File[]
 }
 
+const uploadService = new UploadImagesService();
+
 class CreatePostService {
   async execute({ title, content, files }: PostRequest) {
     try {

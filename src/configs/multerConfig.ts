@@ -16,6 +16,9 @@ export default {
       return callback(null, filename);
     },
   }),
+  limits: {
+    fileSize: 1024 * 1024 * 2, // limita o tamanho do arquivo para 2MB
+  },
   fileFilter: (req: any, file: any, cb: any) => {
     const allowedMimes = [
       'image/jpeg',

@@ -2,16 +2,23 @@ import path from 'path';
 import fs from 'fs';
 import mime from 'mime-types';
 import aws, { S3 } from 'aws-sdk';
-
 import uploadConfig from '../configs/multerConfig';
 
 class S3Storage {
+  private static instance: S3Storage;
   private client: S3;
 
-  constructor() {
+  private constructor() {
     this.client = new aws.S3({
       region: 'us-east-1',
     });
+  }
+
+  public static getInstance(): S3Storage {
+    if (!S3Storage.instance) {
+      S3Storage.instance = new S3Storage();
+    }
+    return S3Storage.instance;
   }
 
   async saveFile(filename: string): Promise<string> {
@@ -20,24 +27,21 @@ class S3Storage {
     const ContentType = mime.lookup(originalPath);
 
     if (!ContentType) {
-      throw new Error('File not found');
+        throw new Error('File not found');
     }
 
-    const fileContent = await fs.promises.readFile(originalPath);
-
     await this.client
-      .putObject({
-        Bucket: 'aula-youtube1',
-        Key: filename,
-        ACL: 'public-read',
-        Body: fileContent,
-        ContentType,
-      })
-      .promise();
+        .upload({
+            Bucket: 'aula-youtube1',
+            Key: filename,
+            ACL: 'public-read',
+            Body: fs.createReadStream(originalPath),
+            ContentType,
+        })
+        .promise();
 
     await fs.promises.unlink(originalPath);
 
-    // Construir a URL do objeto
     const fileUrl = `https://aula-youtube1.s3.amazonaws.com/${filename}`;
 
     return fileUrl;
@@ -49,12 +53,7 @@ class S3Storage {
       Key: filename
     };
 
-    return new Promise((resolve, reject) => {
-      this.client.deleteObject(params, (err, data) => {
-        if (err) reject(err);
-        else resolve(data);
-      });
-    });
+    await this.client.deleteObject(params).promise();
   }
 }
 
