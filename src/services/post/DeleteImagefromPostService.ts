@@ -21,7 +21,6 @@ class DeleteImagefromPostService {
 
       if(!imageAlreadyExists) throw new Error('Image not found in the post')
 
-      // Reutilize uma única instância do serviço DeleteImageService
       const deleteImageService = new DeleteImageService();
 
       // Processar os arquivos um de cada vez

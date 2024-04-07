@@ -1,5 +1,4 @@
 import S3Storage from "../../utils/S3Storage";
-
 const s3 = S3Storage.getInstance();
 
 class DeleteImageService {
@@ -20,5 +19,4 @@ class DeleteImageService {
     }
   }
 }
-
-export { DeleteImageService}
+export {DeleteImageService};
