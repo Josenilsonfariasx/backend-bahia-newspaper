@@ -73,11 +73,11 @@ export const html = (code) => {
           <p>Olá,</p>
           <p>Parece que você esqueceu sua senha. Não se preocupe! Aqui está um código exclusivo para você:</p>
           <div class="code">${code}</div>
-          <p class="note">Este código é válido por 1 hora.</p>
+          <p class="note">Este código é válido por 5 minutos.</p>
       </div>
       <div class="footer">
           <p>Atenciosamente,<br>Equipe Jornal Bahia</p>
-          <p>Não solicitou isso? Ignore este email e fique em atento</p>
+          <p>Não solicitou isso? Ignore este email e fique atento</p>
       </div>
   </body>
   
