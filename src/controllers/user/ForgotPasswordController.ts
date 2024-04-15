@@ -5,7 +5,7 @@ class ForgotPasswordController {
   async handle(req: Request, res: Response) {
     const { email } = req.body
     const forgotPasswordService = new ForgotPasswordService()
-    const fogot = await forgotPasswordService.execute({
+    const fogot = await forgotPasswordService.execute(req,{
       email: email
     })
     return res.json(fogot)

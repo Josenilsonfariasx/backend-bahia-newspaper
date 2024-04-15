@@ -2,14 +2,18 @@ import { send } from "../../utils/send";
 import { html } from "../../utils/bodyHtmlForEmailSend";
 import { generateCode } from "../../utils/code";
 import prismaClient from "../../prisma";
+import { Request } from "express";
 
 interface ForgotPasswordRequest {
   email: string;
 }
 
+let code = generateCode()
+export let sendCode = code
+// console.log(code)
 class ForgotPasswordService {
-  async execute({ email }: ForgotPasswordRequest) {
-    const code = generateCode()
+  async execute(req:Request, { email }: ForgotPasswordRequest) {
+    req.code
     try {
       if (!email) {
         throw new Error('Email is required');
@@ -22,8 +26,12 @@ class ForgotPasswordService {
       if(!userAlreadyExist){
         throw new Error('Failed to find user')
       }
-      send(email, 'Envio de email', html(code))
-      return {code:code}
+      send(email, 'Recuperação de Senha Jornal Da Bahia', html(code))
+      // Invalidar o código após 5 minutos
+      setTimeout(() => {
+        sendCode = null;
+      }, 5 * 60 * 1000);
+      return {ok:"Email send successfully"}
     } catch (error) {
       throw new Error('Failed to: ' + error.message);
     }
