@@ -11,7 +11,7 @@ export const TagRoutes = Router()
 TagRoutes.post('/', isAuthenticated, new CreateTagController().handle)
 
 // get
-TagRoutes.get('/', isAuthenticated, new ListTagsController().handle)
+TagRoutes.get('/', new ListTagsController().handle)
 
 // put
 TagRoutes.put('/', isAuthenticated, new UpdateTagController().handle)

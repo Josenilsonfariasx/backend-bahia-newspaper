@@ -28,8 +28,8 @@ postRoutes.post('/category/:id', isAuthenticated, new InsertCategoryInPostContro
 postRoutes.post('/tag/:id', isAuthenticated, new InsertTagInPostController().handle)
 
 // get
-postRoutes.get('/', isAuthenticated, new ListAllPostController().handle)
-postRoutes.get('/:id', isAuthenticated, new GetPostByIdController().handle)
+postRoutes.get('/', new ListAllPostController().handle)
+postRoutes.get('/:id', new GetPostByIdController().handle)
 
 // put
 postRoutes.put('/:id', isAuthenticated, new UpdatePostController().handle)
