@@ -40,7 +40,8 @@ model Post {
   title         String        
   content       String        
   photoUrls     String[]     
-  videoUrls     String[]     
+  videoUrls     String[]
+  post_view_count   Int           @default(0)    
   tags          Tag[]        
   categories    Category[] 
   createdAt     DateTime      @default(now())
