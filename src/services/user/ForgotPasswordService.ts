@@ -31,7 +31,10 @@ class ForgotPasswordService {
       setTimeout(() => {
         sendCode = null;
       }, 5 * 60 * 1000);
-      return {ok:"Email send successfully"}
+      return {
+        message: 'Code sent to email',
+        ok:userAlreadyExist.id
+      }
     } catch (error) {
       throw new Error('Failed to: ' + error.message);
     }
