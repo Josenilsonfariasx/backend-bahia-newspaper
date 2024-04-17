@@ -8,11 +8,11 @@ interface ForgotPasswordRequest {
   email: string;
 }
 
-let code = generateCode()
-export let sendCode = code
+let code=''
 // console.log(code)
 class ForgotPasswordService {
   async execute(req:Request, { email }: ForgotPasswordRequest) {
+    let code = generateCode()
     req.code
     try {
       if (!email) {
@@ -41,4 +41,5 @@ class ForgotPasswordService {
   }
 }
 
+export let sendCode = code
 export { ForgotPasswordService };
