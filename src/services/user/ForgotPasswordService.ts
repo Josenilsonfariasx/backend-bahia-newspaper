@@ -33,7 +33,7 @@ class ForgotPasswordService {
       }, 5 * 60 * 1000);
       return {
         message: 'Code sent to email',
-        ok:userAlreadyExist.id
+        userId:userAlreadyExist.id
       }
     } catch (error) {
       throw new Error('Failed to: ' + error.message);
