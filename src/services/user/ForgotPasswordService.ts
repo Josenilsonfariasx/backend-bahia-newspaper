@@ -8,12 +8,26 @@ interface ForgotPasswordRequest {
   email: string;
 }
 
-let code=''
-// console.log(code)
 class ForgotPasswordService {
+  private static instance: ForgotPasswordService;
+  sendCode: string | null = null;
+
+  private constructor() {}
+
+  static getInstance() {
+    if (!ForgotPasswordService.instance) {
+      ForgotPasswordService.instance = new ForgotPasswordService();
+    }
+    return ForgotPasswordService.instance;
+  }
+
+  getSendCode() {
+    return this.sendCode;
+  }
+
   async execute(req:Request, { email }: ForgotPasswordRequest) {
     let code = generateCode()
-    req.code
+    this.sendCode = code
     try {
       if (!email) {
         throw new Error('Email is required');
@@ -29,7 +43,7 @@ class ForgotPasswordService {
       send(email, 'Recuperação de Senha Jornal Da Bahia', html(code))
       // Invalidar o código após 5 minutos
       setTimeout(() => {
-        sendCode = null;
+        this.sendCode = null;
       }, 5 * 60 * 1000);
       return {
         message: 'Code sent to email',
@@ -41,5 +55,4 @@ class ForgotPasswordService {
   }
 }
 
-export let sendCode = code
 export { ForgotPasswordService };

@@ -4,10 +4,8 @@ import { ForgotPasswordService } from "../../services/user/ForgotPasswordService
 class ForgotPasswordController {
   async handle(req: Request, res: Response) {
     const { email } = req.body
-    const forgotPasswordService = new ForgotPasswordService()
-    const fogot = await forgotPasswordService.execute(req,{
-      email: email
-    })
+    const forgotPasswordService = ForgotPasswordService.getInstance(); // Use getInstance em vez de new
+    const fogot = await forgotPasswordService.execute(req, { email })
     return res.json(fogot)
   }
 }
