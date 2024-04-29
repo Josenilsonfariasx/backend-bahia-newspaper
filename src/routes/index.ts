@@ -6,6 +6,7 @@ import { categoryRoutes } from "./category/category.routes";
 import { TagRoutes } from "./tag/tag.routes";
 import { postRoutes } from "./post/post.routes";
 import { filtersRoutes } from "./filters/filters.routes";
+import { adRoutes } from "./ad/ad.routes";
 export const routes: Router = Router();
 
 routes.get('/on', (req:Request, res:Response)=> {
@@ -19,3 +20,4 @@ routes.use('/category', categoryRoutes)
 routes.use('/tag', TagRoutes)
 routes.use('/post', postRoutes)
 routes.use('/filter', filtersRoutes)
+routes.use('/ad', adRoutes)
