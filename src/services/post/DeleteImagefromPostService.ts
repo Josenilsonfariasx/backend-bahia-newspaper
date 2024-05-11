@@ -12,7 +12,7 @@ class DeleteImagefromPostService {
       if(!id) throw new Error('ID is required to find the post')
       if(!urlPost) throw new Error('URL is required to find the image')
 
-      const files = urlPost.map(url => url.split('https://aula-youtube1.s3.amazonaws.com/')[1]) 
+      const files = urlPost.map(url => url.split('https://jornal-da-bahia-backend-1.s3.amazonaws.com/')[1]) 
 
       const post = await prismaClient.post.findFirst({where: {id}})
       if(!post) throw new Error('Post not found')

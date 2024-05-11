@@ -32,7 +32,7 @@ class S3Storage {
 
     await this.client
         .upload({
-            Bucket: 'aula-youtube1',
+            Bucket: 'jornal-da-bahia-backend-1',
             Key: filename,
             ACL: 'public-read',
             Body: fs.createReadStream(originalPath),
@@ -42,14 +42,14 @@ class S3Storage {
 
     await fs.promises.unlink(originalPath);
 
-    const fileUrl = `https://aula-youtube1.s3.amazonaws.com/${filename}`;
+    const fileUrl = `https://jornal-da-bahia-backend-1.s3.amazonaws.com/${filename}`;
 
     return fileUrl;
   }
 
   async deleteFile(filename: string) {
     const params = {
-      Bucket: 'aula-youtube1', 
+      Bucket: 'jornal-da-bahia-backend-1', 
       Key: filename
     };
 
