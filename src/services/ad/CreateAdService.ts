@@ -40,7 +40,7 @@ class CreateAdService {
           imageUrl: uploadedPhotos.map((photo) => photo.url),
           videoUrl: uploadedVideos.map((video) => video.url),
           link: link,
-          type: link,
+          type: type,
         },
       });
       return ad;
