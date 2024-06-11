@@ -66,6 +66,7 @@ model Category {
 model Ad {
   id           String        @id @default(uuid())
   description  String
+  type String
   imageUrl     String[]
   videoUrl     String[]
   link         String
