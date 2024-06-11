@@ -1,8 +1,8 @@
-import path from 'path';
-import fs from 'fs';
-import mime from 'mime-types';
-import aws, { S3 } from 'aws-sdk';
-import uploadConfig from '../configs/multerConfig';
+import path from "path";
+import fs from "fs";
+import mime from "mime-types";
+import aws, { S3 } from "aws-sdk";
+import uploadConfig from "../configs/multerConfig";
 
 class S3Storage {
   private static instance: S3Storage;
@@ -10,7 +10,7 @@ class S3Storage {
 
   private constructor() {
     this.client = new aws.S3({
-      region: 'us-east-1',
+      region: "us-east-1",
     });
   }
 
@@ -27,20 +27,20 @@ class S3Storage {
     const ContentType = mime.lookup(originalPath);
 
     if (!ContentType) {
-        throw new Error('File not found');
+      throw new Error("File not found");
     }
 
     await this.client
-        .upload({
-            Bucket: 'jornal-da-bahia-backend-1',
-            Key: filename,
-            ACL: 'public-read',
-            Body: fs.createReadStream(originalPath),
-            ContentType,
-        })
-        .promise();
+      .upload({
+        Bucket: "jornal-da-bahia-backend-1",
+        Key: filename,
+        ACL: "public-read",
+        Body: fs.createReadStream(originalPath),
+        ContentType,
+      })
+      .promise();
 
-    await fs.promises.unlink(originalPath);
+    // await fs.promises.unlink(originalPath);
 
     const fileUrl = `https://jornal-da-bahia-backend-1.s3.amazonaws.com/${filename}`;
 
@@ -49,8 +49,8 @@ class S3Storage {
 
   async deleteFile(filename: string) {
     const params = {
-      Bucket: 'jornal-da-bahia-backend-1', 
-      Key: filename
+      Bucket: "jornal-da-bahia-backend-1",
+      Key: filename,
     };
 
     await this.client.deleteObject(params).promise();
