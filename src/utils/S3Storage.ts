@@ -40,7 +40,7 @@ class S3Storage {
       })
       .promise();
 
-    // await fs.promises.unlink(originalPath);
+    await fs.promises.unlink(originalPath);
 
     const fileUrl = `https://jornal-da-bahia-backend-1.s3.amazonaws.com/${filename}`;
 

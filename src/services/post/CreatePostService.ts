@@ -15,6 +15,7 @@ class CreatePostService {
       const photos = [];
       const videos = [];
       for (const file of files) {
+        file.filename = file.filename.replace(/\s/g, "");
         if (file.mimetype.startsWith("image")) {
           photos.push(file);
         } else if (file.mimetype.startsWith("video")) {
@@ -25,7 +26,7 @@ class CreatePostService {
       const uploadedPhotos = await Promise.all(
         photos.map(async (file) => {
           const fileUrl = await new UploadImagesService().execute(file);
-          return { url: fileUrl };
+          return { filename: file.originalname, url: fileUrl };
         })
       );
 
