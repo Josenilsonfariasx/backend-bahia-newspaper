@@ -17,6 +17,9 @@ class GetAllPostsByIdCategoryService {
             },
           },
         },
+        include: {
+          categories: true,
+        },
       });
 
       return posts;
