@@ -1,38 +1,36 @@
-import multer from 'multer';
-import path from 'path';
-import crypto from 'crypto';
-import fs from 'fs';
+import multer from "multer";
+import path from "path";
+import crypto from "crypto";
+import fs from "fs";
 
-const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
+const tmpFolder = path.resolve(__dirname, "..", "..", "tmp");
 
 export default {
   directory: tmpFolder,
   storage: multer.diskStorage({
     destination: tmpFolder,
     filename(request, file, callback) {
-      const fileHash = crypto.randomBytes(10).toString('hex');
+      const fileHash = crypto.randomBytes(10).toString("hex");
       const filename = `${fileHash}-${file.originalname}`;
 
       return callback(null, filename);
     },
   }),
-  limits: {
-    fileSize: 1024 * 1024 * 2, // limita o tamanho do arquivo para 2MB
-  },
   fileFilter: (req: any, file: any, cb: any) => {
     const allowedMimes = [
-      'image/jpeg',
-      'image/pjpeg',
-      'image/png',
-      'image/gif',
-      'video/x-matroska',
-      'video/mp4',
+      "image/jpeg",
+      "image/pjpeg",
+      "image/png",
+      "image/gif",
+      "video/x-matroska",
+      "video/mp4",
+      "image/webp", // Adicionado suporte para webp
     ];
 
     if (allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error('Invalid file type.'));
+      cb(new Error("Invalid file type."));
     }
   },
   cleanup: () => {
@@ -40,7 +38,7 @@ export default {
       if (err) throw err;
 
       for (const file of files) {
-        fs.unlink(path.join(tmpFolder, file), err => {
+        fs.unlink(path.join(tmpFolder, file), (err) => {
           if (err) throw err;
         });
       }
