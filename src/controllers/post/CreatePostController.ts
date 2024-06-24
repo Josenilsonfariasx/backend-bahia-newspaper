@@ -4,7 +4,7 @@ import { CreatePostService } from "../../services/post/CreatePostService";
 class CreatePostController {
   async handle(req: Request, res: Response) {
     let files: Express.Multer.File[] = req.files as Express.Multer.File[];
-    const { title, content, categoryIds, tagIds } = req.body;
+    const { title, content, categoryId, tagIds } = req.body;
 
     // Renomear arquivos
     files = files.map((file) => {
@@ -13,7 +13,7 @@ class CreatePostController {
     });
 
     const createPostService = new CreatePostService();
-    const post = await createPostService.execute({ title, content, files, categoryIds, tagIds });
+    const post = await createPostService.execute({ title, content, files, categoryId, tagIds });
     return res.json(post);
   }
 }

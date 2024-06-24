@@ -6,12 +6,12 @@ interface PostRequest {
   title: string;
   content: string;
   files: Express.Multer.File[];
-  categoryIds: string[]; // Novo campo
-  tagIds: string[]; // Novo campo
+  categoryId: string; // Alterado para um único ID de categoria
+  tagIds: string[];
 }
 
 class CreatePostService {
-  async execute({ title, content, files, categoryIds, tagIds }: PostRequest) {
+  async execute({ title, content, files, categoryId, tagIds }: PostRequest) {
     try {
       if (!title || !content) throw new Error("Title and Content are required");
 
@@ -48,7 +48,7 @@ class CreatePostService {
           published: true,
           publishedAt: new Date(),
           categories: {
-            connect: categoryIds.map((id) => ({ id })),
+            connect: { id: categoryId },
           },
           tags: {
             connect: tagIds.map((id) => ({ id })),
