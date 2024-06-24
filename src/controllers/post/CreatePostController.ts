@@ -13,14 +13,7 @@ class CreatePostController {
     });
 
     const createPostService = new CreatePostService();
-    const post = await createPostService.execute({
-      title,
-      content,
-      files,
-      categoryIds: categoryIds ? JSON.parse(categoryIds) : [], // Parse categoryIds se for uma string
-      tagIds: tagIds ? JSON.parse(tagIds) : [], // Parse tagIds se for uma string
-    });
-
+    const post = await createPostService.execute({ title, content, files, categoryIds, tagIds });
     return res.json(post);
   }
 }
