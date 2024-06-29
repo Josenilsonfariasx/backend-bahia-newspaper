@@ -1,45 +1,46 @@
 import prismaClient from "../../prisma";
 import { hash } from "bcryptjs";
 
-interface UserRequest{
+interface UserRequest {
   username: string;
   email: string;
   password: string;
   roleId?: string;
 }
 class CreateUserService {
-  async execute({username, email, password}:UserRequest) {
+  async execute({ username, email, password, roleId }: UserRequest) {
     try {
-      if(!username || !email || !password){
-        throw new Error ('All fields are required')
+      if (!username || !email || !password) {
+        throw new Error("All fields are required");
       }
 
       const userAlreadyExist = await prismaClient.user.findFirst({
         where: {
-          email:email
-        }
-      })
+          email: email,
+        },
+      });
 
-      if(userAlreadyExist){
+      if (userAlreadyExist) {
         throw new Error("Email already exists");
       }
       const passwordHash = await hash(password, 8);
 
       const User = await prismaClient.user.create({
-        data:{
+        data: {
           username: username,
           email: email,
           password: passwordHash,
-        }, 
+          roleId: roleId,
+        },
         select: {
-          id:true,
-          username:true,
-          email:true,
-          role:true,
-          permissions:true
-        }
-      })
-      return User
+          id: true,
+          username: true,
+          email: true,
+          role: true,
+          permissions: true,
+        },
+      });
+      return User;
     } catch (error) {
       throw new Error("Failed to create user: " + error.message);
     }
